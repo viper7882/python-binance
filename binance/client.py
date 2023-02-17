@@ -394,7 +394,7 @@ class Client(BaseClient):
         products = self._request_website('get', 'exchange-api/v1/public/asset-service/product/get-products')
         return products
 
-    def get_exchange_info(self) -> Dict:
+    def get_exchange_info(self, **params) -> Dict:
         """Return rate limits and list of symbols
 
         :returns: list - List of product dictionaries
@@ -456,7 +456,7 @@ class Client(BaseClient):
 
         """
 
-        return self._get('exchangeInfo', version=self.PRIVATE_API_VERSION)
+        return self._get('exchangeInfo', data=params, version=self.PRIVATE_API_VERSION)
 
     def get_symbol_info(self, symbol) -> Optional[Dict]:
         """Return information about a symbol
